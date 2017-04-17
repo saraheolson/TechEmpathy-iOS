@@ -1,0 +1,6 @@
+framework module Pods_TechEmpathy {
+  umbrella header "Pods-TechEmpathy-umbrella.h"
+
+  export *
+  module * { export * }
+}

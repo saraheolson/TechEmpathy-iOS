@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StoryCollectionViewCell" customModule="TechEmpathy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GUM-Tn-oRv">
+                    <rect key="frame" x="30" y="5" width="240" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="GUM-Tn-oRv" secondAttribute="height" multiplier="1:1" id="Nn3-1z-KkH"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yX-Q7-VGk">
+                    <rect key="frame" x="134.5" y="253" width="32" height="32"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                    <state key="normal" image="ear">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="listenToStory:" destination="iN0-l3-epB" eventType="touchUpInside" id="aEo-sl-goe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="GUM-Tn-oRv" secondAttribute="trailing" constant="30" id="5cb-UK-Qci"/>
+                <constraint firstAttribute="bottom" secondItem="2yX-Q7-VGk" secondAttribute="bottom" constant="15" id="GQ8-xC-oCE"/>
+                <constraint firstItem="2yX-Q7-VGk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="chx-4f-5BB"/>
+                <constraint firstItem="GUM-Tn-oRv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="qkY-yf-VlS"/>
+                <constraint firstItem="GUM-Tn-oRv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="yh4-qT-sCG"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="listenButton" destination="2yX-Q7-VGk" id="LNw-3V-DqC"/>
+                <outlet property="storyImageView" destination="GUM-Tn-oRv" id="ZoQ-Kb-Udj"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ear" width="22" height="22"/>
+    </resources>
+</document>

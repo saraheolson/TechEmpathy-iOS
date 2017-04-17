@@ -16,6 +16,7 @@ class AddStoryViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet weak var storyTypeControl: UISegmentedControl!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var audioTextField: UITextField!
@@ -136,11 +137,14 @@ class AddStoryViewController: UIViewController {
 
         let storiesRef = firebase.child("stories")
         let storyKey = firebase.childByAutoId().key
+        
+        let storyType: StoryType = storyTypeControl.selectedSegmentIndex == 0 ? .inclusion : .exclusion
+        
         let newStory = Story(key: storyKey,
-                             nickname: self.nicknameTextField.text ?? "",
+                             storyName: self.nicknameTextField.text ?? "",
                              user: FirebaseManager.sharedInstance.anonymousUser ?? "Anonymous iOS User",
                              color: colorTextField.text ?? "",
-                             storyType: StoryType.exclusion, // TODO update this
+                             storyType: storyType,
                              audio: "",
                              storyText: storyTextView.text ?? "")
         storiesRef.updateChildValues(newStory.toJSON())

@@ -19,7 +19,7 @@ struct Story {
     let key: String
     let uuid: String
     let dateAdded: String
-    var nickname: String
+    var storyName: String
     var user: String
     var color: String
     var storyType: StoryType
@@ -28,7 +28,7 @@ struct Story {
     
     init?(key: String, JSON: [String: Any?]) {
         
-        guard let nickname = JSON["nickname"] as? String,
+        guard let nickname = JSON["storyName"] as? String,
               let user = JSON["user"] as? String,
               let color = JSON["color"] as? String,
               let storyTypeString = JSON["storyType"] as? String,
@@ -39,7 +39,7 @@ struct Story {
         self.key = key
         self.uuid = UUID().uuidString
         self.dateAdded = "\(Date())"
-        self.nickname = nickname
+        self.storyName = nickname
         self.user = user
         self.color = color
         self.storyType = storyType
@@ -53,7 +53,7 @@ struct Story {
     }
     
     init( key: String,
-          nickname: String,
+          storyName: String,
           user: String,
           color: String,
           storyType: StoryType,
@@ -63,7 +63,7 @@ struct Story {
         self.key = key
         self.uuid = UUID().uuidString
         self.dateAdded = "\(Date())"
-        self.nickname = nickname
+        self.storyName = storyName
         self.user = user
         self.color = color
         self.storyType = storyType
@@ -74,7 +74,7 @@ struct Story {
     func toJSON() -> [String: [String: Any]] {
         return ["\(key)" : ["uuid": self.uuid,
                  "dateAdded": self.dateAdded,
-                 "nickname" : self.nickname,
+                 "storyName" : self.storyName,
                  "user": self.user,
                  "color": self.color,
                  "storyType": storyType.rawValue,

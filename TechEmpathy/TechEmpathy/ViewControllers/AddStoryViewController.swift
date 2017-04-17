@@ -111,8 +111,11 @@ class AddStoryViewController: UIViewController {
             } else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 downloadURL = metadata!.downloadURL()
+                var mutableStory = story
+                mutableStory.audio = downloadURL?.absoluteURL.absoluteString
                 
-                
+                let storiesRef = self.firebase.child("stories")
+                storiesRef.updateChildValues(mutableStory.toJSON())
             }
         }
     }
@@ -140,12 +143,11 @@ class AddStoryViewController: UIViewController {
                              storyType: StoryType.exclusion, // TODO update this
                              audio: "",
                              storyText: storyTextView.text ?? "")
-        let childUpdates = newStory.toJSON()
-        storiesRef.updateChildValues(childUpdates)
+        storiesRef.updateChildValues(newStory.toJSON())
         
-//        if let audioFile = self.audioFilename {
-//            uploadAudio(newStory, audioFile: audioFile)
-//        }
+        if let audioFile = self.audioFilename {
+            uploadAudio(story: newStory, audioFile: audioFile)
+        }
         
         self.navigationController?.popViewController(animated: true)
     }

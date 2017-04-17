@@ -10,12 +10,17 @@ import UIKit
 import AVFoundation
 import FirebaseDatabase
 
+protocol StoryDataDelegate {
+    func storyDataChanged(datasource: [Story])
+}
+
 class StoryViewController: UIViewController {
 
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet weak var storyTypeControl: UISegmentedControl!
     
     fileprivate var datasource: [Story] = []
+    private let storyDatasource = StoryDatasource()
     var audioPlayer: AVPlayer?
     var firebaseRef: FIRDatabaseReference?
     var storiesQuery: FIRDatabaseQuery?
@@ -25,17 +30,14 @@ class StoryViewController: UIViewController {
         super.viewDidLoad()
 
         firebaseRef = FirebaseManager.sharedInstance.firebaseRef
+        storyDatasource.retrieveData()
+        storyDatasource.delegate = self
         
         self.collectionView.register(UINib(nibName: "StoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Story")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        storiesQuery = (firebaseRef!.child("stories")
-            .queryOrdered(byChild: "dateAdded")
-            .queryLimited(toLast: 20))
-        updateQuery()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,19 +48,60 @@ class StoryViewController: UIViewController {
     }
     
     @IBAction func storyTypeChanged(_ sender: Any) {
+        switch (storyTypeControl.selectedSegmentIndex) {
+        case 1:
+            datasource = storyDatasource.getDatasourceForFilter(storyType: .inclusion)
+        case 2:
+            datasource = storyDatasource.getDatasourceForFilter(storyType: .exclusion)
+        default:
+            datasource = storyDatasource.getDatasourceForFilter(storyType: .all)
+        }
+        collectionView.reloadData()
     }
     
-    func updateQuery() {
-        queryHandle = storiesQuery?.observe(.value, with: { (snapshot) in
-            if let JSON = snapshot.value as? [String: [String: Any]] {
-                
-                let storiesArray: [Story] = JSON.flatMap{ (story) in
-                    return Story(key: story.key, JSON: story.value)
+    private class StoryDatasource {
+        
+        var currentDataSource: [Story] = []
+        var delegate: StoryViewController?
+        
+        func retrieveData() {
+            
+            let firebaseRef = FirebaseManager.sharedInstance.firebaseRef
+            
+            let storiesQuery = (firebaseRef.child("stories")
+                .queryOrdered(byChild: "dateAdded")
+                .queryLimited(toLast: 20))
+            
+            let queryHandle = storiesQuery.observe(.value, with: { (snapshot) in
+                if let JSON = snapshot.value as? [String: [String: Any]] {
+                    
+                    let storiesArray: [Story] = JSON.flatMap{ (story) in
+                        return Story(key: story.key, JSON: story.value)
+                    }
+                    self.currentDataSource = storiesArray
+                    self.delegate?.storyDataChanged(datasource: self.currentDataSource)
                 }
-                self.datasource = storiesArray
-                self.collectionView.reloadData()
+            })
+        }
+        
+        func getDatasourceForFilter(storyType: StoryType) -> [Story] {
+            switch (storyType) {
+            case .exclusion:
+                return currentDataSource.filter { $0.storyType == .exclusion }
+            case .inclusion:
+                return currentDataSource.filter { $0.storyType == .inclusion }
+            default:
+                return currentDataSource
             }
-        })
+        }
+    }
+}
+
+extension StoryViewController: StoryDataDelegate {
+    func storyDataChanged(datasource: [Story]) {
+        self.datasource = datasource
+        self.storyTypeControl.selectedSegmentIndex = 0
+        self.collectionView.reloadData()
     }
 }
 
@@ -94,4 +137,3 @@ extension StoryViewController: UICollectionViewDelegate {
         }
     }
 }
-

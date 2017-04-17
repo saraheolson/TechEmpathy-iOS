@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5v-Yk-cye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="138.98050974512745"/>
+            <point key="canvasLocation" x="962" y="139"/>
         </scene>
         <!--Add Story View Controller-->
         <scene sceneID="Y96-qj-6CT">
@@ -313,7 +313,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qLU-vb-ENm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LWa-Uu-hnH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LWa-Uu-hnH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

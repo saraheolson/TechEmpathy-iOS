@@ -11,6 +11,7 @@ import Foundation
 enum StoryType: String {
     case exclusion = "exclusion"
     case inclusion = "inclusion"
+    case all = "all"
 }
 
 struct Story {

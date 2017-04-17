@@ -19,7 +19,7 @@ class StoryCollectionViewCell: UICollectionViewCell {
             if let storyColor = story?.color {
                 self.backgroundColor = UIColor(hexString: storyColor)
             }
-            if story?.audio == nil || story?.audio == "No audio" {
+            if story?.audio == nil || story?.audio == "" || story?.audio == "No audio" {
                 listenButton.tintColor = UIColor.gray
                 listenButton.isEnabled = false
             } else {

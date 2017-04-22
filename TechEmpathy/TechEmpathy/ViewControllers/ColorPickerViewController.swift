@@ -18,12 +18,22 @@ class ColorPickerViewController: UIViewController {
 
     var colorPickerDelegate: ColorPickerDelegate? = nil
     var selectedColor: UIColor = UIColor.gray
-    var datasource = [ UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.black]
+    var datasource: [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        
+        loadColors()
+    }
+    
+    func loadColors() {
+        if let path = Bundle.main.path(forResource: "colorPalette", ofType: "plist"),
+            let colors = NSArray(contentsOfFile: path) as? [String] {
+            
+            datasource = colors.map { UIColor(hexString: $0) }
+        }
     }
 }
 extension ColorPickerViewController: UICollectionViewDataSource {

@@ -137,5 +137,6 @@ extension StoryViewController: UICollectionViewDelegate {
                 self.audioPlayer?.play()
             }
         }
+        LIFXManager().updateAllLights(color: story.color)
     }
 }

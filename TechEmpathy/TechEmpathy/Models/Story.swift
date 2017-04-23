@@ -25,6 +25,7 @@ struct Story {
     var storyType: StoryType
     var audio: String?
     var storyText: String?
+    var isLampLit = false
     
     init?(key: String, JSON: [String: Any?]) {
         

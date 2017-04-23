@@ -13,19 +13,22 @@ class StoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var storyImageView: UIImageView!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var lampButton: UIButton!
     
     var story: Story? {
         didSet {
-            if let storyColor = story?.color {
-                self.backgroundColor = UIColor(hexString: storyColor)
+            guard let story = story else {
+                return
             }
-            if story?.audio == nil || story?.audio == "" || story?.audio == "No audio" {
+            self.backgroundColor = UIColor(hexString: story.color)
+            if story.audio == nil || story.audio == "" || story.audio == "No audio" {
                 listenButton.tintColor = UIColor.gray
                 listenButton.isEnabled = false
             } else {
                 listenButton.tintColor = UIColor.white
                 listenButton.isEnabled = true
             }
+            self.lampButton.isHidden = !story.isLampLit
         }
     }
 }

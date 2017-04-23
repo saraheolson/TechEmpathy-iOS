@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,23 +23,34 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yX-Q7-VGk">
-                    <rect key="frame" x="134.5" y="253" width="32" height="32"/>
+                    <rect key="frame" x="178" y="253" width="92" height="35"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="5ls-lS-XwF"/>
+                    </constraints>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                    <state key="normal" image="ear">
+                    <state key="normal" title="Listen" image="ear">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="listenToStory:" destination="iN0-l3-epB" eventType="touchUpInside" id="aEo-sl-goe"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smm-XH-hgS">
+                    <rect key="frame" x="30" y="252.5" width="24" height="35"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="lamp"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="2yX-Q7-VGk" firstAttribute="height" secondItem="Smm-XH-hgS" secondAttribute="height" id="0by-Du-c2d"/>
                 <constraint firstAttribute="trailing" secondItem="GUM-Tn-oRv" secondAttribute="trailing" constant="30" id="5cb-UK-Qci"/>
-                <constraint firstAttribute="bottom" secondItem="2yX-Q7-VGk" secondAttribute="bottom" constant="15" id="GQ8-xC-oCE"/>
-                <constraint firstItem="2yX-Q7-VGk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="chx-4f-5BB"/>
+                <constraint firstItem="Smm-XH-hgS" firstAttribute="centerY" secondItem="2yX-Q7-VGk" secondAttribute="centerY" id="CA7-oo-pGA"/>
+                <constraint firstAttribute="trailing" secondItem="2yX-Q7-VGk" secondAttribute="trailing" constant="30" id="EFW-Fd-iBo"/>
+                <constraint firstAttribute="bottom" secondItem="2yX-Q7-VGk" secondAttribute="bottom" constant="12" id="GQ8-xC-oCE"/>
+                <constraint firstItem="Smm-XH-hgS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Sze-ga-fwv"/>
                 <constraint firstItem="GUM-Tn-oRv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="qkY-yf-VlS"/>
                 <constraint firstItem="GUM-Tn-oRv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="yh4-qT-sCG"/>
             </constraints>
@@ -48,12 +59,14 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="lampButton" destination="Smm-XH-hgS" id="bbJ-Ex-XKA"/>
                 <outlet property="listenButton" destination="2yX-Q7-VGk" id="LNw-3V-DqC"/>
                 <outlet property="storyImageView" destination="GUM-Tn-oRv" id="ZoQ-Kb-Udj"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="ear" width="22" height="22"/>
+        <image name="ear" width="33" height="33"/>
+        <image name="lamp" width="24" height="24"/>
     </resources>
 </document>

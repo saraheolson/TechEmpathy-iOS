@@ -38,8 +38,6 @@ class StoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,6 +135,29 @@ extension StoryViewController: UICollectionViewDelegate {
                 self.audioPlayer?.play()
             }
         }
-        LIFXManager().updateAllLights(color: story.color)
+        LIFXManager().updateAllLights(color: story.color) { [weak self] (success) in
+            if success {
+                DispatchQueue.main.async {
+                    guard let stories = self?.datasource else {
+                        return
+                    }
+                    let litStory = self?.datasource[indexPath.row]
+                    
+                    self?.datasource = stories.map { (story) in
+                        var mutableStory = story
+                        if let selectedStory = litStory,
+                            mutableStory.key == selectedStory.key {
+                            mutableStory.isLampLit = true
+                            //print("I saw the light")
+                        } else {
+                            mutableStory.isLampLit = false
+                            //print("So not lit")
+                        }
+                        return mutableStory
+                    }
+                    self?.collectionView.reloadData()
+                }
+            }
+        }
     }
 }

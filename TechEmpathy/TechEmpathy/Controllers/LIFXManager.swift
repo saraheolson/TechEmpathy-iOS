@@ -12,7 +12,7 @@ class LIFXManager {
 
     private let LIFX_Token = "c2dcb3c97dba437f9f1633b07d1216493a8f5cf6419547458cb8e70e99fa6a65"
 
-    public func updateAllLights(color: String) {
+    public func updateAllLights(color: String, completion: @escaping (Bool) -> ()) {
         
         let loginString = String(format: "%@:%@", LIFX_Token, "")
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -36,6 +36,7 @@ class LIFXManager {
         }
         } catch {
             print("Error creating parameters for LIFX API call.")
+            completion(false)
         }
         
         let config = URLSessionConfiguration.default
@@ -46,6 +47,7 @@ class LIFXManager {
         session.dataTask(with: request) { ( data, response, error) in
             if error != nil {
                 print("Error occurred: \(String(describing: error))")
+                completion(false)
             }
             do {
                 if let data = data,
@@ -55,10 +57,12 @@ class LIFXManager {
                     
                     if status == "ok" {
                         print("Success!")
+                        completion(true)
                     }
                 }
             } catch {
                 print("Error deserializing JSON: \(error)")
+                completion(false)
             }
         }.resume()
     }

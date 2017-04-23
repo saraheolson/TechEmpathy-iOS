@@ -47,26 +47,19 @@ class LIFXManager {
             if error != nil {
                 print("Error occurred: \(String(describing: error))")
             }
-//            if let _ = response as? HTTPURLResponse {
-                
-                do {
-                    if let data = data,
-                        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                        let status = json["status"] as? String {
-                        
-                        if status == "ok" {
-                            print("Success!")
-                        }
+            do {
+                if let data = data,
+                    let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                    let results = json["results"] as? [[String: Any]],
+                    let status = results[0]["status"] as? String {
+                    
+                    if status == "ok" {
+                        print("Success!")
                     }
-                } catch {
-                    print("Error deserializing JSON: \(error)")
                 }
-                
-//                print(names)
-//                if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
-//                    print("Data \(dataString)")
-//                }
-//            }
+            } catch {
+                print("Error deserializing JSON: \(error)")
+            }
         }.resume()
     }
 }

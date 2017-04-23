@@ -25,6 +25,9 @@
 		0C9A8DE81EA2BD0D006D4445 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A8DE71EA2BD0D006D4445 /* FirebaseManager.swift */; };
 		0C9A8DEB1EA2DDE9006D4445 /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A8DEA1EA2DDE9006D4445 /* StoryCollectionViewCell.swift */; };
 		0C9A8DED1EA2DE04006D4445 /* StoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9A8DEC1EA2DE04006D4445 /* StoryCollectionViewCell.xib */; };
+		0CA08F941EACEE4A001F53A7 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F931EACEE4A001F53A7 /* Date+Format.swift */; };
+		0CA08F961EACF1FB001F53A7 /* DateFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F951EACF1FB001F53A7 /* DateFormatTests.swift */; };
+		0CA08F971EACF252001F53A7 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F931EACEE4A001F53A7 /* Date+Format.swift */; };
 		0CA08F921EAAEA1A001F53A7 /* LIFXManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */; };
 		1BDE7CA7DDDFD9F156C5C0C7 /* Pods_TechEmpathyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5519ABED74CEEBFE0541D5 /* Pods_TechEmpathyTests.framework */; };
 		3FAE3066DABDFD756CDC8C6F /* Pods_TechEmpathy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFEA85BF7AC611853DBF7A0 /* Pods_TechEmpathy.framework */; };
@@ -72,6 +75,8 @@
 		0C9A8DE71EA2BD0D006D4445 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Controllers/FirebaseManager.swift; sourceTree = "<group>"; };
 		0C9A8DEA1EA2DDE9006D4445 /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryCollectionViewCell.swift; path = Views/StoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C9A8DEC1EA2DE04006D4445 /* StoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoryCollectionViewCell.xib; path = Views/StoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		0CA08F931EACEE4A001F53A7 /* Date+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Format.swift"; path = "Extensions/Date+Format.swift"; sourceTree = "<group>"; };
+		0CA08F951EACF1FB001F53A7 /* DateFormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatTests.swift; sourceTree = "<group>"; };
 		0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LIFXManager.swift; path = Controllers/LIFXManager.swift; sourceTree = "<group>"; };
 		1F9E66DE671631FBE8EDBDF6 /* Pods-TechEmpathyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechEmpathyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TechEmpathyTests/Pods-TechEmpathyTests.release.xcconfig"; sourceTree = "<group>"; };
 		5619BB059726D7978B92EFBF /* Pods-TechEmpathyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechEmpathyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TechEmpathyTests/Pods-TechEmpathyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +160,7 @@
 			children = (
 				0C9A8DAF1EA1955B006D4445 /* TechEmpathyTests.swift */,
 				0C9A8DB11EA1955B006D4445 /* Info.plist */,
+				0CA08F951EACF1FB001F53A7 /* DateFormatTests.swift */,
 			);
 			path = TechEmpathyTests;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9A8DE11EA2ADF7006D4445 /* UIColor+Hex.swift */,
+				0CA08F931EACEE4A001F53A7 /* Date+Format.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -549,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA08F941EACEE4A001F53A7 /* Date+Format.swift in Sources */,
 				0CA08F921EAAEA1A001F53A7 /* LIFXManager.swift in Sources */,
 				0C9A8DEB1EA2DDE9006D4445 /* StoryCollectionViewCell.swift in Sources */,
 				0C9A8DDC1EA2ADB2006D4445 /* StoryViewController.swift in Sources */,
@@ -565,6 +573,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA08F971EACF252001F53A7 /* Date+Format.swift in Sources */,
+				0CA08F961EACF1FB001F53A7 /* DateFormatTests.swift in Sources */,
 				0C9A8DB01EA1955B006D4445 /* TechEmpathyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,6 +754,24 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4SR4ST5E9E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"${SRCROOT}/Pods/Google\"/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"\"$(SRCROOT)/Pods\"/**",
+				);
 				INFOPLIST_FILE = TechEmpathyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.saraheolson.TechEmpathyTests;
@@ -760,6 +788,24 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4SR4ST5E9E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"${SRCROOT}/Pods/Google\"/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"\"$(SRCROOT)/Pods\"/**",
+				);
 				INFOPLIST_FILE = TechEmpathyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.saraheolson.TechEmpathyTests;

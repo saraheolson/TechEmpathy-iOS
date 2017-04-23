@@ -14,45 +14,75 @@ enum StoryType: String {
     case all = "all"
 }
 
+struct JSONKeys {
+    static let uuid = "uuid"
+    static let dateAdded = "dateAdded"
+    static let storyName = "storyName"
+    static let user = "user"
+    static let color = "color"
+    static let storyType = "storyType"
+    static let isApproved = "isApproved"
+    static let audio = "audio"
+    static let storyText = "storyText"
+}
+
 struct Story {
     
     let key: String
     let uuid: String
-    let dateAdded: String
+    let dateAdded: Date
     var storyName: String
     var user: String
     var color: String
     var storyType: StoryType
+    let isApproved: Bool
     var audio: String?
     var storyText: String?
     var isLampLit = false
     
+    /// Populating an existing story from JSON
     init?(key: String, JSON: [String: Any?]) {
         
-        guard let nickname = JSON["storyName"] as? String,
-              let user = JSON["user"] as? String,
-              let color = JSON["color"] as? String,
-              let storyTypeString = JSON["storyType"] as? String,
+        guard let nickname = JSON[JSONKeys.storyName] as? String,
+              let user = JSON[JSONKeys.user] as? String,
+              let color = JSON[JSONKeys.color] as? String,
+              let storyTypeString = JSON[JSONKeys.storyType] as? String,
               let storyType = StoryType(rawValue: storyTypeString)
             else {
                 return nil
         }
         self.key = key
-        self.uuid = UUID().uuidString
-        self.dateAdded = "\(Date())"
         self.storyName = nickname
         self.user = user
         self.color = color
         self.storyType = storyType
         
-        if let audio = JSON["audio"] as? String {
+        if let dateAddedString = JSON[JSONKeys.dateAdded] as? String,
+           let dateAdded = Date.firebaseDate(fromString: dateAddedString) {
+            self.dateAdded = dateAdded
+        } else {
+            self.dateAdded = Date()
+        }
+        
+        if let uuid = JSON[JSONKeys.uuid] as? String {
+            self.uuid = uuid
+        } else {
+            self.uuid = UUID().uuidString
+        }
+        if let approved = JSON[JSONKeys.isApproved] as? Bool {
+            self.isApproved = approved
+        } else {
+            self.isApproved = false
+        }
+        if let audio = JSON[JSONKeys.audio] as? String {
             self.audio = audio
         }
-        if let storyText = JSON["storyText"] as? String {
+        if let storyText = JSON[JSONKeys.storyText] as? String {
             self.storyText = storyText
         }
     }
     
+    /// Creating a new story
     init( key: String,
           storyName: String,
           user: String,
@@ -62,24 +92,27 @@ struct Story {
           storyText: String?) {
         
         self.key = key
-        self.uuid = UUID().uuidString
-        self.dateAdded = "\(Date())"
+        self.dateAdded = Date()
         self.storyName = storyName
         self.user = user
         self.color = color
         self.storyType = storyType
         self.audio = audio
         self.storyText = storyText
+        self.uuid = UUID().uuidString
+        self.isApproved = false
     }
     
     func toJSON() -> [String: [String: Any]] {
-        return ["\(key)" : ["uuid": self.uuid,
-                 "dateAdded": self.dateAdded,
-                 "storyName" : self.storyName,
-                 "user": self.user,
-                 "color": self.color,
-                 "storyType": storyType.rawValue,
-                 "audio": audio ?? "",
-                 "storyText": storyText ?? ""]]
+        return [key :
+            [JSONKeys.uuid: self.uuid,
+             JSONKeys.dateAdded: self.dateAdded,
+             JSONKeys.storyName : self.storyName,
+             JSONKeys.user: self.user,
+             JSONKeys.color: self.color,
+             JSONKeys.storyType: storyType.rawValue,
+             JSONKeys.isApproved: self.isApproved,
+             JSONKeys.audio: audio ?? "",
+             JSONKeys.storyText: storyText ?? ""]]
     }
 }

@@ -17,11 +17,12 @@ class AddStoryViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var storyTypeControl: UISegmentedControl!
+    @IBOutlet weak var storyImageView: UIImageView!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var audioTextField: UITextField!
     @IBOutlet weak var recordButton: UIButton!
-    @IBOutlet weak var recordOrWriteSwitch: UISwitch!
+    @IBOutlet weak var recordOrWriteControl: UISegmentedControl!
     @IBOutlet weak var recordStack: UIStackView!
     @IBOutlet weak var writeStack: UIStackView!
     @IBOutlet weak var saveButton: UIButton!
@@ -31,6 +32,8 @@ class AddStoryViewController: UIViewController {
     
     var audioFilename: URL?
     
+    let picker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +42,8 @@ class AddStoryViewController: UIViewController {
 
         writeStack.isHidden = true
         //saveButton.isEnabled = false
+        
+        storyImageView.image = #imageLiteral(resourceName: "placeholder")
         
         // Get firebase reference
         firebase = FIRDatabase.database().reference()
@@ -76,8 +81,12 @@ class AddStoryViewController: UIViewController {
     }
     
     @IBAction func recordOrWriteChanged(_ sender: Any) {
-        recordStack.isHidden = !recordOrWriteSwitch.isOn
-        writeStack.isHidden = recordOrWriteSwitch.isOn
+        recordStack.isHidden = self.recordOrWriteControl.selectedSegmentIndex != 0
+        writeStack.isHidden = self.recordOrWriteControl.selectedSegmentIndex != 1
+        
+        if !writeStack.isHidden {
+            self.storyTextView.becomeFirstResponder()
+        }
     }
     
     @IBAction func pickColor(_ sender: Any) {
@@ -191,7 +200,7 @@ extension AddStoryViewController: AVAudioRecorderDelegate {
             audioRecorder.delegate = self
             audioRecorder.record()
             
-            recordButton.setTitle("Tap to Stop", for: .normal)
+            recordButton.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
         } catch {
             finishRecording(success: false)
         }
@@ -202,10 +211,10 @@ extension AddStoryViewController: AVAudioRecorderDelegate {
         audioRecorder = nil
         
         if success {
-            recordButton.setTitle("Tap to Re-record", for: .normal)
+            recordButton.setImage(#imageLiteral(resourceName: "recording"), for: .normal)
         } else {
-            recordButton.setTitle("Tap to Record", for: .normal)
-            // recording failed :(
+            //TODO: display alert
+            recordButton.setImage(#imageLiteral(resourceName: "microphone"), for: .normal)
         }
     }
     

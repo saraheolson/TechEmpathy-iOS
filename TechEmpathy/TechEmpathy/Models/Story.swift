@@ -21,9 +21,10 @@ struct JSONKeys {
     static let user = "user"
     static let color = "color"
     static let storyType = "storyType"
+    static let storyText = "storyText"
     static let isApproved = "isApproved"
     static let audio = "audio"
-    static let storyText = "storyText"
+    static let image = "image"
 }
 
 struct Story {
@@ -37,6 +38,7 @@ struct Story {
     var storyType: StoryType
     let isApproved: Bool
     var audio: String?
+    var image: String?
     var storyText: String?
     var isLampLit = false
     
@@ -77,6 +79,9 @@ struct Story {
         if let audio = JSON[JSONKeys.audio] as? String {
             self.audio = audio
         }
+        if let image = JSON[JSONKeys.image] as? String {
+            self.image = image
+        }
         if let storyText = JSON[JSONKeys.storyText] as? String {
             self.storyText = storyText
         }
@@ -89,6 +94,7 @@ struct Story {
           color: String,
           storyType: StoryType,
           audio: String?,
+          image: String?,
           storyText: String?) {
         
         self.key = key
@@ -98,6 +104,7 @@ struct Story {
         self.color = color
         self.storyType = storyType
         self.audio = audio
+        self.image = image
         self.storyText = storyText
         self.uuid = UUID().uuidString
         self.isApproved = false
@@ -106,13 +113,14 @@ struct Story {
     func toJSON() -> [String: [String: Any]] {
         return [key :
             [JSONKeys.uuid: self.uuid,
-             JSONKeys.dateAdded: self.dateAdded,
+             JSONKeys.dateAdded: self.dateAdded.firebaseDateString(),
              JSONKeys.storyName : self.storyName,
              JSONKeys.user: self.user,
              JSONKeys.color: self.color,
              JSONKeys.storyType: storyType.rawValue,
              JSONKeys.isApproved: self.isApproved,
              JSONKeys.audio: audio ?? "",
+             JSONKeys.image: image ?? "",
              JSONKeys.storyText: storyText ?? ""]]
     }
 }

@@ -20,7 +20,6 @@ class AddStoryViewController: UIViewController {
     @IBOutlet weak var storyImageView: UIImageView!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
-    @IBOutlet weak var audioTextField: UITextField!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordOrWriteControl: UISegmentedControl!
     @IBOutlet weak var recordStack: UIStackView!
@@ -43,7 +42,10 @@ class AddStoryViewController: UIViewController {
         writeStack.isHidden = true
         //saveButton.isEnabled = false
         
-        storyImageView.image = #imageLiteral(resourceName: "placeholder")
+        //storyImageView.image = #imageLiteral(resourceName: "placeholder")
+        let imagePickerGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(displayImagePickerActionSheet))
+        storyImageView.isUserInteractionEnabled = true
+        storyImageView.addGestureRecognizer(imagePickerGestureRecognizer)
         
         // Get firebase reference
         firebase = FIRDatabase.database().reference()
@@ -80,6 +82,70 @@ class AddStoryViewController: UIViewController {
         }
     }
     
+    // Actions 
+    
+    func displayImagePickerActionSheet() {
+        print("Pick image!")
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera",
+                                            style: .default,
+                                            handler: { [weak self] (alert:UIAlertAction!) -> Void in
+            self?.takePhoto()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library",
+                                            style: .default,
+                                            handler: { [weak self] (alert:UIAlertAction!) -> Void in
+            self?.selectPhotoFromLibrary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func takePhoto() {
+        print("Take Photo")
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self
+            myPickerController.sourceType = UIImagePickerControllerSourceType.camera
+            
+            self.present(myPickerController, animated: true, completion: nil)
+        } else {
+            displayNoCameraAlert()
+        }
+    }
+    
+    func selectPhotoFromLibrary() {
+        print("Select Photo")
+        
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        
+        self.present(myPickerController, animated: true, completion: nil)
+    }
+    
+    func displayNoCameraAlert(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "The camera on this device is unaccessible.",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        present(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+    
     @IBAction func recordOrWriteChanged(_ sender: Any) {
         recordStack.isHidden = self.recordOrWriteControl.selectedSegmentIndex != 0
         writeStack.isHidden = self.recordOrWriteControl.selectedSegmentIndex != 1
@@ -108,28 +174,6 @@ class AddStoryViewController: UIViewController {
         }
     }
     
-    func uploadAudio(story: Story, audioFile: URL) {
-        
-        // Create a reference to the file you want to upload
-        let storageRef = FirebaseManager.sharedInstance.storiesStorage
-        let riversRef = storageRef.child("audio/\(story.uuid).mp4")
-        var downloadURL: URL? = nil
-        
-        _ = riversRef.putFile(audioFile, metadata: nil) { metadata, error in
-            if let error = error {
-                print("Error uploading audio file: \(error)")
-            } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                downloadURL = metadata!.downloadURL()
-                var mutableStory = story
-                mutableStory.audio = downloadURL?.absoluteURL.absoluteString
-                
-                let storiesRef = self.firebase.child("stories")
-                storiesRef.updateChildValues(mutableStory.toJSON())
-            }
-        }
-    }
-    
     func validateFields() -> Bool {
         
 //        if (colorTextField.text != nil) &&
@@ -155,14 +199,64 @@ class AddStoryViewController: UIViewController {
                              color: colorTextField.text ?? "",
                              storyType: storyType,
                              audio: "",
+                             image: "",
                              storyText: storyTextView.text ?? "")
         storiesRef.updateChildValues(newStory.toJSON())
         
         if let audioFile = self.audioFilename {
             uploadAudio(story: newStory, audioFile: audioFile)
         }
+        if let image = self.storyImageView.image {
+            uploadImage(story: newStory, image: image)
+        }
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func uploadAudio(story: Story, audioFile: URL) {
+        
+        // Create a reference to the file you want to upload
+        let storageRef = FirebaseManager.sharedInstance.storiesStorage
+        let audioRef = storageRef.child("audio/\(story.uuid).mp4")
+        var downloadURL: URL? = nil
+        
+        _ = audioRef.putFile(audioFile, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Error uploading audio file: \(error)")
+            } else {
+                // Metadata contains file metadata such as size, content-type, and download URL.
+                downloadURL = metadata!.downloadURL()
+                var mutableStory = story
+                mutableStory.audio = downloadURL?.absoluteURL.absoluteString
+                
+                let storiesRef = self.firebase.child("stories")
+                storiesRef.updateChildValues(mutableStory.toJSON())
+            }
+        }
+    }
+    
+    func uploadImage(story: Story, image: UIImage) {
+        
+        // Create a reference to the file you want to upload
+        let storageRef = FirebaseManager.sharedInstance.storiesStorage
+        let imagesRef = storageRef.child("images/\(story.uuid).jpg")
+        var downloadURL: URL? = nil
+        
+        if let imageData = UIImageJPEGRepresentation(image, 0.8) {
+        
+            _ = imagesRef.put(imageData, metadata: nil) { metadata, error in
+                if let error = error {
+                    print("Error uploading umage: \(error)")
+                } else {
+                    downloadURL = metadata!.downloadURL()
+                    var mutableStory = story
+                    mutableStory.image = downloadURL?.absoluteURL.absoluteString
+                    
+                    let storiesRef = self.firebase.child("stories")
+                    storiesRef.updateChildValues(mutableStory.toJSON())
+                }
+            }
+        }
     }
     
     func getDocumentsDirectory() -> URL {
@@ -241,5 +335,13 @@ extension AddStoryViewController: ColorPickerDelegate {
     func colorPicked(viewController: UIViewController, color: UIColor) {
         self.colorTextField.backgroundColor = color
         self.colorTextField.text = color.toHexString()
+    }
+}
+
+extension AddStoryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.storyImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
     }
 }

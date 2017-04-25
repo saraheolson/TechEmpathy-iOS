@@ -28,6 +28,12 @@ class StoryCollectionViewCell: UICollectionViewCell {
                 listenButton.tintColor = UIColor.white
                 listenButton.isEnabled = true
             }
+            if let image = story.image,
+                image != "" {
+                storyImageView.pin_setImage(from: URL(string: image)!)
+            } else {
+                storyImageView.image = nil
+            }
             self.lampButton.isHidden = !story.isLampLit
         }
     }

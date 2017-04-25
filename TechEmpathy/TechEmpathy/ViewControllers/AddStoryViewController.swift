@@ -41,8 +41,8 @@ class AddStoryViewController: UIViewController {
 
         writeStack.isHidden = true
         //saveButton.isEnabled = false
-        
-        //storyImageView.image = #imageLiteral(resourceName: "placeholder")
+
+        // Add gesture recognizer for image picker
         let imagePickerGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(displayImagePickerActionSheet))
         storyImageView.isUserInteractionEnabled = true
         storyImageView.addGestureRecognizer(imagePickerGestureRecognizer)
@@ -83,6 +83,10 @@ class AddStoryViewController: UIViewController {
     }
     
     // Actions 
+    
+    @IBAction func tappedSelectPhotoButton(_ sender: Any) {
+        displayImagePickerActionSheet()
+    }
     
     func displayImagePickerActionSheet() {
         print("Pick image!")

@@ -247,6 +247,9 @@
                                                         <state key="normal" title="Select a Photo">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="tappedSelectPhotoButton:" destination="3Sy-Jt-Eoa" eventType="touchUpInside" id="cBm-OF-SpV"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

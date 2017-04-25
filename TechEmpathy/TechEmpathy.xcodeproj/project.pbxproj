@@ -25,10 +25,10 @@
 		0C9A8DE81EA2BD0D006D4445 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A8DE71EA2BD0D006D4445 /* FirebaseManager.swift */; };
 		0C9A8DEB1EA2DDE9006D4445 /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A8DEA1EA2DDE9006D4445 /* StoryCollectionViewCell.swift */; };
 		0C9A8DED1EA2DE04006D4445 /* StoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9A8DEC1EA2DE04006D4445 /* StoryCollectionViewCell.xib */; };
+		0CA08F921EAAEA1A001F53A7 /* LIFXManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */; };
 		0CA08F941EACEE4A001F53A7 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F931EACEE4A001F53A7 /* Date+Format.swift */; };
 		0CA08F961EACF1FB001F53A7 /* DateFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F951EACF1FB001F53A7 /* DateFormatTests.swift */; };
 		0CA08F971EACF252001F53A7 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F931EACEE4A001F53A7 /* Date+Format.swift */; };
-		0CA08F921EAAEA1A001F53A7 /* LIFXManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */; };
 		1BDE7CA7DDDFD9F156C5C0C7 /* Pods_TechEmpathyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5519ABED74CEEBFE0541D5 /* Pods_TechEmpathyTests.framework */; };
 		3FAE3066DABDFD756CDC8C6F /* Pods_TechEmpathy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFEA85BF7AC611853DBF7A0 /* Pods_TechEmpathy.framework */; };
 		A8554817F91F7FFDEF6AC6E9 /* Pods_TechEmpathyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4566EE06E6D943DE25E5F97 /* Pods_TechEmpathyUITests.framework */; };
@@ -75,9 +75,10 @@
 		0C9A8DE71EA2BD0D006D4445 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Controllers/FirebaseManager.swift; sourceTree = "<group>"; };
 		0C9A8DEA1EA2DDE9006D4445 /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryCollectionViewCell.swift; path = Views/StoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C9A8DEC1EA2DE04006D4445 /* StoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoryCollectionViewCell.xib; path = Views/StoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LIFXManager.swift; path = Controllers/LIFXManager.swift; sourceTree = "<group>"; };
 		0CA08F931EACEE4A001F53A7 /* Date+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Format.swift"; path = "Extensions/Date+Format.swift"; sourceTree = "<group>"; };
 		0CA08F951EACF1FB001F53A7 /* DateFormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatTests.swift; sourceTree = "<group>"; };
-		0CA08F911EAAEA1A001F53A7 /* LIFXManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LIFXManager.swift; path = Controllers/LIFXManager.swift; sourceTree = "<group>"; };
+		0CA08F981EAED963001F53A7 /* TechEmpathy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TechEmpathy-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F9E66DE671631FBE8EDBDF6 /* Pods-TechEmpathyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechEmpathyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TechEmpathyTests/Pods-TechEmpathyTests.release.xcconfig"; sourceTree = "<group>"; };
 		5619BB059726D7978B92EFBF /* Pods-TechEmpathyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechEmpathyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TechEmpathyTests/Pods-TechEmpathyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		63326D397C74A91C24295B9C /* Pods-TechEmpathyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechEmpathyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TechEmpathyUITests/Pods-TechEmpathyUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 				0C9A8DA61EA1955B006D4445 /* Info.plist */,
 				0C9A8DC81EA19590006D4445 /* GoogleService-Info.plist */,
 				0C9A8DD01EA1B107006D4445 /* TechEmpathy-Bridging.h */,
+				0CA08F981EAED963001F53A7 /* TechEmpathy-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -668,6 +670,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -711,6 +714,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -727,7 +731,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.saraheolson.TechEmpathy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TechEmpathy/TechEmpathy-Bridging.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TechEmpathy/TechEmpathy-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -742,7 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.saraheolson.TechEmpathy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TechEmpathy/TechEmpathy-Bridging.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TechEmpathy/TechEmpathy-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

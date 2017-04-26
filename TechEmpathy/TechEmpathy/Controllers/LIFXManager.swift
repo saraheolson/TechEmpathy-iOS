@@ -10,11 +10,58 @@ import Foundation
 
 class LIFXManager {
 
-    private let LIFX_Token = "c2dcb3c97dba437f9f1633b07d1216493a8f5cf6419547458cb8e70e99fa6a65"
+    static let sharedInstance: LIFXManager = LIFXManager()
+    
+    private init() {
+        if let lifxPrompted = UserDefaults.standard.value(forKey: self.LIFX_PromptedKey) as? String {
+            if lifxPrompted == LIFX_PromptedValue {
+                self.hasBeenPromptedForLifx = true
+            }
+        }
+    }
+    
+    private let LIFX_APIKey = "com.saraheolson.techempathy.LIFXToken"
+    private let LIFX_PromptedKey = "com.saraheolson.techempathy.LIFXPrompted"
+    private let LIFX_PromptedValue = "prompted"
 
+    public private(set) var hasLamp = false
+    public var hasBeenPromptedForLifx = false
+    
+    public func askUserForLampToken() -> UIAlertController {
+    
+        let alert = UIAlertController(title: "LIFX Light",
+                                      message: "Do you want to integrate our app with a LIFX light?",
+                                      preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "LIFX API Token"
+        }
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .default,
+                                      handler: { [weak self, weak alert] (_) in
+            
+            guard let strongSelf = self, let strongAlert = alert else {
+                return
+            }
+            strongSelf.hasBeenPromptedForLifx = true
+            UserDefaults.standard.setValue(strongSelf.LIFX_PromptedValue, forKey: strongSelf.LIFX_PromptedKey)
+            
+            if let text = strongAlert.textFields![0].text {
+                UserDefaults.standard.setValue(text, forKey: strongSelf.LIFX_APIKey)
+                strongSelf.hasLamp = true
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        return alert
+    }
+    
     public func updateAllLights(color: String, completion: @escaping (Bool) -> ()) {
         
-        let loginString = String(format: "%@:%@", LIFX_Token, "")
+        guard let lifxToken = UserDefaults.standard.value(forKey: self.LIFX_APIKey) as? String else {
+            return
+        }
+
+        let loginString = String(format: "%@:%@", lifxToken, "")
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
         
@@ -56,7 +103,7 @@ class LIFXManager {
                     let status = results[0]["status"] as? String {
                     
                     if status == "ok" {
-                        print("Success!")
+                        print("Lit up.")
                         completion(true)
                     }
                 }

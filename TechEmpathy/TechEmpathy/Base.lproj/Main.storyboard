@@ -193,7 +193,7 @@
                                                             <segment title="Record Your Story"/>
                                                             <segment title="Write Your Story"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="recordOrWriteChanged:" destination="3Sy-Jt-Eoa" eventType="valueChanged" id="jVk-bb-03c"/>
                                                         </connections>

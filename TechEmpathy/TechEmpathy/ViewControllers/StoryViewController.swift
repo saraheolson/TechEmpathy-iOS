@@ -29,6 +29,11 @@ class StoryViewController: UIViewController {
         self.collectionView.register(UINib(nibName: "StoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Story")
 
         storyDatasource.delegate = self
+        
+        // LIFX integration
+        if !LIFXManager.sharedInstance.hasBeenPromptedForLifx {
+            self.present(LIFXManager.sharedInstance.askUserForLampToken(), animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,7 +151,7 @@ extension StoryViewController: UICollectionViewDelegate {
                 self.audioPlayer?.play()
             }
         }
-        LIFXManager().updateAllLights(color: story.color) { [weak self] (success) in
+        LIFXManager.sharedInstance.updateAllLights(color: story.color) { [weak self] (success) in
             if success {
                 DispatchQueue.main.async {
                     guard let stories = self?.datasource else {

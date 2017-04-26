@@ -30,7 +30,7 @@
                                     <segment title="Inclusion"/>
                                     <segment title="Exclusion"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="storyTypeChanged:" destination="c5R-YJ-sMI" eventType="valueChanged" id="Fj5-8c-XGv"/>
                                 </connections>
@@ -95,62 +95,73 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-Fy-fjr" userLabel="Story Form">
-                                        <rect key="frame" x="15" y="0.0" width="345" height="1370.5"/>
+                                        <rect key="frame" x="15" y="0.0" width="345" height="1339.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S38-wZ-Fao">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="118"/>
                                                 <string key="text">TechEmpathy captures stories of inclusion and exclusion in tech. What was one small thing someone did to make you feel part of a team? Tell us about the microagressions you've experience at work. Good or bad, share your story with the world so we can all learn from each other!</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUj-ds-n0P" userLabel="Nickname">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUj-ds-n0P" userLabel="Story Name">
                                                 <rect key="frame" x="0.0" y="138" width="345" height="26.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nKy-nq-liR" userLabel="Nickname">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nKy-nq-liR" userLabel="Story Name">
                                                 <rect key="frame" x="0.0" y="184.5" width="345" height="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRQ-a3-XVU" userLabel="Line Separator">
+                                                <rect key="frame" x="0.0" y="234.5" width="345" height="1"/>
+                                                <color key="backgroundColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="soF-qj-l5A"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of Story" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-pg-fuR">
-                                                <rect key="frame" x="0.0" y="234.5" width="345" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="255.5" width="345" height="26.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VHZ-nw-3xV">
-                                                <rect key="frame" x="0.0" y="281" width="345" height="29"/>
+                                                <rect key="frame" x="0.0" y="302" width="345" height="29"/>
                                                 <segments>
                                                     <segment title="Inclusion"/>
                                                     <segment title="Exclusion"/>
                                                 </segments>
-                                                <color key="tintColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </segmentedControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eit-KG-sgB" userLabel="Color">
-                                                <rect key="frame" x="0.0" y="329" width="345" height="26.5"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wsd-hP-Xk6" userLabel="Line Separator">
+                                                <rect key="frame" x="0.0" y="350" width="345" height="1"/>
+                                                <color key="backgroundColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="xHg-kq-FNq"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eit-KG-sgB" userLabel="Color">
+                                                <rect key="frame" x="0.0" y="371" width="345" height="26.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-jM-jHp" userLabel="Color Picker">
-                                                <rect key="frame" x="0.0" y="375.5" width="345" height="44"/>
+                                                <rect key="frame" x="0.0" y="417.5" width="345" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="#000000" borderStyle="roundedRect" placeholder="FFFFFF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8T-QN-fjk" userLabel="Color">
-                                                        <rect key="frame" x="0.0" y="0.0" width="233" height="44"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="#E0F2F1" borderStyle="roundedRect" placeholder="FFFFFF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8T-QN-fjk" userLabel="Color">
+                                                        <rect key="frame" x="0.0" y="0.0" width="233" height="30"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izp-Me-Rhx">
-                                                        <rect key="frame" x="243" y="0.0" width="102" height="44"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.69019607843137254" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="aQr-vP-60k"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="243" y="0.0" width="102" height="30"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                                         <state key="normal" title="Pick a Color"/>
@@ -160,20 +171,21 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Story" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTe-O0-hbK" userLabel="Story">
-                                                <rect key="frame" x="0.0" y="439.5" width="345" height="33.5"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Li0-Gl-ZDt" userLabel="Line Separator">
+                                                <rect key="frame" x="0.0" y="467.5" width="345" height="1"/>
+                                                <color key="backgroundColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="1eA-2x-5vI"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to record your story or write it?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHd-8w-6jG">
-                                                <rect key="frame" x="0.0" y="493" width="345" height="54.5"/>
+                                                <rect key="frame" x="0.0" y="488.5" width="345" height="54.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mT5-I3-F6C" userLabel="Record or Write">
-                                                <rect key="frame" x="0.0" y="567.5" width="345" height="28"/>
+                                                <rect key="frame" x="0.0" y="563" width="345" height="28"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="l4G-2j-aYW">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="29"/>
@@ -181,7 +193,7 @@
                                                             <segment title="Record Your Story"/>
                                                             <segment title="Write Your Story"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.69019607839999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="recordOrWriteChanged:" destination="3Sy-Jt-Eoa" eventType="valueChanged" id="jVk-bb-03c"/>
                                                         </connections>
@@ -189,21 +201,17 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nUL-i3-iJR" userLabel="Record">
-                                                <rect key="frame" x="0.0" y="615.5" width="345" height="44"/>
+                                                <rect key="frame" x="0.0" y="611" width="345" height="34"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your story" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em4-Dt-cpi" userLabel="Audio">
-                                                        <rect key="frame" x="0.0" y="0.0" width="291" height="44"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your story:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em4-Dt-cpi" userLabel="Audio">
+                                                        <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgz-Yo-6jL">
-                                                        <rect key="frame" x="301" y="0.0" width="44" height="44"/>
+                                                        <rect key="frame" x="311" y="0.0" width="34" height="34"/>
                                                         <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="44" id="Pl0-h8-HLJ"/>
-                                                            <constraint firstAttribute="height" constant="44" id="R3I-tJ-TNL"/>
-                                                        </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                         <state key="normal" image="microphone"/>
@@ -214,7 +222,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7G7-0W-zlp" userLabel="Write">
-                                                <rect key="frame" x="0.0" y="679.5" width="345" height="128"/>
+                                                <rect key="frame" x="0.0" y="665" width="345" height="128"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WHJ-sy-6Bo">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="128"/>
@@ -228,45 +236,38 @@
                                                     </textView>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPa-Xp-Gx4" userLabel="Line Separator">
+                                                <rect key="frame" x="0.0" y="813" width="345" height="1"/>
+                                                <color key="backgroundColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="ind-H9-zjA"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKX-ab-38w" userLabel="Image Header">
-                                                <rect key="frame" x="0.0" y="827.5" width="345" height="44"/>
+                                                <rect key="frame" x="0.0" y="834" width="345" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ez8-Td-NOy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="225" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="26.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lm-qn-J6q">
-                                                        <rect key="frame" x="225" y="0.0" width="120" height="44"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="0ww-1m-Wp9"/>
-                                                        </constraints>
-                                                        <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                        <state key="normal" title="Select a Photo">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="tappedSelectPhotoButton:" destination="3Sy-Jt-Eoa" eventType="touchUpInside" id="cBm-OF-SpV"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload an image of yourself or an object that provides a meaningful connection to your story." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-np-oJA">
-                                                <rect key="frame" x="0.0" y="891.5" width="345" height="61"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to upload an image that provides a meaningful connection to your story." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-np-oJA">
+                                                <rect key="frame" x="0.0" y="880.5" width="345" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.25346427030000002" blue="0.29820352160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="FzA-iF-eUI">
-                                                <rect key="frame" x="0.0" y="972.5" width="345" height="345"/>
+                                                <rect key="frame" x="0.0" y="941.5" width="345" height="345"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="FzA-iF-eUI" secondAttribute="height" multiplier="1:1" id="IOV-S6-HUB"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLx-r5-sne">
-                                                <rect key="frame" x="0.0" y="1337.5" width="345" height="33"/>
+                                                <rect key="frame" x="0.0" y="1306.5" width="345" height="33"/>
                                                 <color key="backgroundColor" red="0.0" green="0.68928641079999997" blue="0.80288696289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Save">
@@ -299,15 +300,15 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
-                        <outlet property="colorTextField" destination="D8T-QN-fjk" id="zqx-SM-Ioh"/>
-                        <outlet property="nicknameTextField" destination="nKy-nq-liR" id="rho-zu-zYd"/>
+                        <outlet property="colorTextField" destination="D8T-QN-fjk" id="DGC-BX-8xe"/>
                         <outlet property="recordButton" destination="bgz-Yo-6jL" id="i2p-oz-yDD"/>
                         <outlet property="recordOrWriteControl" destination="l4G-2j-aYW" id="5no-Jl-DpB"/>
                         <outlet property="recordStack" destination="nUL-i3-iJR" id="iX0-Ce-08B"/>
                         <outlet property="saveButton" destination="aLx-r5-sne" id="Nk4-sE-Qq9"/>
                         <outlet property="scrollView" destination="lEQ-bg-AaD" id="kIF-An-pqA"/>
                         <outlet property="storyImageView" destination="FzA-iF-eUI" id="Ybi-m0-AXk"/>
-                        <outlet property="storyTextView" destination="WHJ-sy-6Bo" id="5HE-Qo-1Ne"/>
+                        <outlet property="storyNameTextField" destination="nKy-nq-liR" id="09f-tU-3I9"/>
+                        <outlet property="storyTextView" destination="WHJ-sy-6Bo" id="yYq-5E-QIF"/>
                         <outlet property="storyTypeControl" destination="VHZ-nw-3xV" id="2Xj-Bl-KUG"/>
                         <outlet property="writeStack" destination="7G7-0W-zlp" id="JGi-wS-bqf"/>
                         <segue destination="XUL-y5-b1h" kind="show" identifier="PickColor" id="VUa-aZ-2sx"/>
@@ -386,7 +387,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="microphone" width="128" height="128"/>
+        <image name="microphone" width="24" height="24"/>
         <image name="placeholder" width="257" height="257"/>
     </resources>
 </document>

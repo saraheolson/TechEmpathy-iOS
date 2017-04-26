@@ -31,9 +31,9 @@ struct Story {
     
     let key: String
     let uuid: String
+    var user: String
     let dateAdded: Date
     var storyName: String
-    var user: String
     var color: String
     var storyType: StoryType
     let isApproved: Bool

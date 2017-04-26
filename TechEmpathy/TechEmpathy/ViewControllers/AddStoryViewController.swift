@@ -13,13 +13,13 @@ import FirebaseDatabase
 class AddStoryViewController: UIViewController {
 
     var firebase: FIRDatabaseReference!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var nicknameTextField: UITextField!
-    @IBOutlet weak var storyTypeControl: UISegmentedControl!
-    @IBOutlet weak var storyImageView: UIImageView!
+
+    @IBOutlet weak var storyNameTextField: UITextField!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var storyTypeControl: UISegmentedControl!
+    @IBOutlet weak var storyImageView: UIImageView!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordOrWriteControl: UISegmentedControl!
     @IBOutlet weak var recordStack: UIStackView!
@@ -33,14 +33,17 @@ class AddStoryViewController: UIViewController {
     
     let picker = UIImagePickerController()
     
+    var errorText: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Adjust view when keyboard is displayed
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+        // Display audio and hide written story section
         writeStack.isHidden = true
-        //saveButton.isEnabled = false
 
         // Add gesture recognizer for image picker
         let imagePickerGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(displayImagePickerActionSheet))
@@ -52,7 +55,6 @@ class AddStoryViewController: UIViewController {
         
         // Set up recording session
         recordingSession = AVAudioSession.sharedInstance()
-        
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
@@ -82,37 +84,40 @@ class AddStoryViewController: UIViewController {
         }
     }
     
-    // Actions 
+    // MARK: - Choosing an Image
     
     @IBAction func tappedSelectPhotoButton(_ sender: Any) {
         displayImagePickerActionSheet()
     }
     
     func displayImagePickerActionSheet() {
-        print("Pick image!")
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.view.tintColor = UIColor(hexString: "#00414C")
         
-        actionSheet.addAction(UIAlertAction(title: "Camera",
-                                            style: .default,
-                                            handler: { [weak self] (alert:UIAlertAction!) -> Void in
+        let cameraAction = UIAlertAction(title: "Camera",
+                                         style: .default,
+                                         handler: { [weak self] (alert:UIAlertAction!) -> Void in
             self?.takePhoto()
-        }))
+        })
+        actionSheet.addAction(cameraAction)
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library",
-                                            style: .default,
-                                            handler: { [weak self] (alert:UIAlertAction!) -> Void in
+        let libraryAction = UIAlertAction(title: "Photo Library",
+                                          style: .default,
+                                          handler: { [weak self] (alert:UIAlertAction!) -> Void in
             self?.selectPhotoFromLibrary()
-        }))
+        })
+        actionSheet.addAction(libraryAction)
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        actionSheet.addAction(cancelAction)
+        
         self.present(actionSheet, animated: true, completion: nil)
     }
     
     func takePhoto() {
-        print("Take Photo")
-        
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let myPickerController = UIImagePickerController()
             myPickerController.delegate = self
@@ -125,8 +130,6 @@ class AddStoryViewController: UIViewController {
     }
     
     func selectPhotoFromLibrary() {
-        print("Select Photo")
-        
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -149,6 +152,8 @@ class AddStoryViewController: UIViewController {
             animated: true,
             completion: nil)
     }
+    
+    // MARK: - Actions
     
     @IBAction func recordOrWriteChanged(_ sender: Any) {
         recordStack.isHidden = self.recordOrWriteControl.selectedSegmentIndex != 0
@@ -173,22 +178,82 @@ class AddStoryViewController: UIViewController {
     }
     
     @IBAction func saveStory(_ sender: Any) {
-        if validateFields() {
+
+        errorText = ""
+        
+        if isFormValid() {
+            errorText = ""
             saveStoryData()
+        } else {
+            displayValidationAlert()
         }
     }
     
-    func validateFields() -> Bool {
-        
-//        if (colorTextField.text != nil) &&
-//            (nicknameTextField.text != nil) &&
-//            ((audioFilename != nil) || (storyTextView.text != nil)) {
-//            
-//            return true
-//        }
-//        return false
-        return true
+    // MARK: - Validation
+    
+    func isFormValid() -> Bool {
+        return hasStoryName() && hasValidColor() && hasAStory()
     }
+    
+    func hasAStory() -> Bool {
+        if hasStoryText() || audioFilename != nil {
+            return true
+        } else {
+            errorText += "Either a written story or an audio recording is required. "
+        }
+        return false
+    }
+    
+    func hasStoryText() -> Bool {
+        if let storyText = storyTextView.text,
+            !storyText.isEmpty{
+            return true
+        }
+        return false
+    }
+    
+    func hasStoryName() -> Bool {
+        if let storyName = storyNameTextField.text,
+            !storyName.isEmpty {
+            return true
+        } else {
+            errorText += "Story Name is required. "
+        }
+        return false
+    }
+    
+    func hasValidColor() -> Bool {
+        if let color = colorTextField.text,
+            !color.isEmpty {
+            let hex_regex = "#([0-9A-F]{6})"
+            if let _ = color.range(of: hex_regex, options: .regularExpression) {
+                return true
+            } else {
+                errorText += "Color is required in hex format (example: #FFFFFF). "
+            }
+        } else {
+            errorText += "Color is required. "
+        }
+        return false
+    }
+    
+    func displayValidationAlert(){
+        let alertVC = UIAlertController(
+            title: "Missing Required Fields",
+            message: errorText,
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        present(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+
+    // MARK: - Saving and Uploading Data
     
     func saveStoryData() {
 
@@ -198,7 +263,7 @@ class AddStoryViewController: UIViewController {
         let storyType: StoryType = storyTypeControl.selectedSegmentIndex == 0 ? .inclusion : .exclusion
         
         let newStory = Story(key: storyKey,
-                             storyName: self.nicknameTextField.text ?? "",
+                             storyName: self.storyNameTextField.text ?? "",
                              user: FirebaseManager.sharedInstance.anonymousUser ?? "Anonymous iOS User",
                              color: colorTextField.text ?? "",
                              storyType: storyType,

@@ -265,7 +265,7 @@ class AddStoryViewController: UIViewController {
         let newStory = Story(key: storyKey,
                              storyName: self.storyNameTextField.text ?? "",
                              user: FirebaseManager.sharedInstance.anonymousUser ?? "Anonymous iOS User",
-                             color: colorTextField.text ?? "",
+                             color: colorTextField.text?.uppercased() ?? "",
                              storyType: storyType,
                              audio: "",
                              image: "",
@@ -374,7 +374,7 @@ extension AddStoryViewController: AVAudioRecorderDelegate {
         audioRecorder = nil
         
         if success {
-            recordButton.setImage(#imageLiteral(resourceName: "recording"), for: .normal)
+            recordButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
         } else {
             //TODO: display alert
             recordButton.setImage(#imageLiteral(resourceName: "microphone"), for: .normal)
@@ -403,7 +403,7 @@ extension AddStoryViewController: ColorPickerDelegate {
     
     func colorPicked(viewController: UIViewController, color: UIColor) {
         self.colorTextField.backgroundColor = color
-        self.colorTextField.text = color.toHexString()
+        self.colorTextField.text = color.toHexString().uppercased()
     }
 }
 

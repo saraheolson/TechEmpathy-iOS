@@ -20,24 +20,27 @@ class StoryViewController: UIViewController {
     @IBOutlet weak var storyTypeControl: UISegmentedControl!
     
     fileprivate var datasource: [Story] = []
-    private let storyDatasource = StoryDatasource()
+    private var storyDatasource = StoryDatasource()
     var audioPlayer: AVPlayer?
-    var firebaseRef: FIRDatabaseReference?
-    var storiesQuery: FIRDatabaseQuery?
-    var queryHandle: UInt?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        firebaseRef = FirebaseManager.sharedInstance.firebaseRef
-        storyDatasource.retrieveData()
-        storyDatasource.delegate = self
-        
         self.collectionView.register(UINib(nibName: "StoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Story")
+
+        storyDatasource.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        storyDatasource.retrieveData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        storyDatasource.removeObservers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,21 +66,25 @@ class StoryViewController: UIViewController {
         
         var currentDataSource: [Story] = []
         var delegate: StoryViewController?
+        var firebaseRef : FIRDatabaseReference? = nil
         
         func retrieveData() {
             
-            let firebaseRef = FirebaseManager.sharedInstance.firebaseRef
-            
-            let storiesQuery = (firebaseRef.child("stories")
+            firebaseRef = FirebaseManager.sharedInstance.firebaseRef
+            guard let ref = firebaseRef else {
+                return
+            }
+
+            let storiesQuery = ref.child("stories")
                 .queryOrdered(byChild: "dateAdded")
-                .queryLimited(toLast: 20))
+                .queryLimited(toLast: 20)
             
-            let queryHandle = storiesQuery.observe(.value, with: { (snapshot) in
+            let _ = storiesQuery.observe(.value, with: { (snapshot) in
                 if let JSON = snapshot.value as? [String: [String: Any]] {
                     
                     let storiesArray: [Story] = JSON.flatMap{ (story) in
                         return Story(key: story.key, JSON: story.value)
-                    }
+                        }.filter { $0.isApproved == true }
                     self.currentDataSource = storiesArray
                     self.delegate?.storyDataChanged(datasource: self.currentDataSource)
                 }
@@ -93,6 +100,10 @@ class StoryViewController: UIViewController {
             default:
                 return currentDataSource
             }
+        }
+        
+        func removeObservers() {
+            firebaseRef?.removeAllObservers()
         }
     }
 }

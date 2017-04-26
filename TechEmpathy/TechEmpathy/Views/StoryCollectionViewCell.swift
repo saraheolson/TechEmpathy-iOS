@@ -28,6 +28,7 @@ class StoryCollectionViewCell: UICollectionViewCell {
                 listenButton.tintColor = UIColor.white
                 listenButton.isEnabled = true
             }
+            storyImageView.pin_setPlaceholder(with: #imageLiteral(resourceName: "placeholder"))
             if let image = story.image,
                 image != "" {
                 storyImageView.pin_setImage(from: URL(string: image)!)

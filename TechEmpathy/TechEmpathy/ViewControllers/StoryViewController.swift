@@ -89,7 +89,7 @@ class StoryViewController: UIViewController {
                     
                     let storiesArray: [Story] = JSON.flatMap{ (story) in
                         return Story(key: story.key, JSON: story.value)
-                        }.filter { $0.isApproved == true }
+                        }
                     self.currentDataSource = storiesArray
                     self.delegate?.storyDataChanged(datasource: self.currentDataSource)
                 }

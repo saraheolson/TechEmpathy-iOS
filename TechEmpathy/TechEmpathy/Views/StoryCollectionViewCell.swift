@@ -18,6 +18,9 @@ class StoryCollectionViewCell: UICollectionViewCell {
     
     var story: Story? {
         didSet {
+
+            resetCell()
+            
             guard let story = story else {
                 return
             }
@@ -51,7 +54,16 @@ class StoryCollectionViewCell: UICollectionViewCell {
                 self.storyNameLabel.text = "This story has not yet been approved."
 
                 listenButton.tintColor = UIColor.gray
-                listenButton.isEnabled = false}
+                listenButton.isEnabled = false
             }
         }
+    }
+    
+    func resetCell() {
+        storyImageView.image = nil
+        self.lampButton.isHidden = true
+        self.storyNameLabel.text = ""
+        self.listenButton.isEnabled = false
+        self.listenButton.tintColor = UIColor.gray
+    }
 }
